@@ -26,7 +26,6 @@
                         <th>Invoice amount</th>
                         <th>Product Name</th>
                         <th>Product soni</th>
-                        <th>Edit</th>
                         <th>Delete</th>
                     </tr>
                     </thead>
@@ -39,8 +38,6 @@
                         <td th:text="${order.invoice.amount}"></td>
                         <td th:text="${order.detail[0].product.name}"></td>
                         <td th:text="${order.detail[0].quantity}"></td>
-                        <td><a th:href="@{/order/edit/{id}(id=${order.id})}" class="btn btn-warning"><i
-                                class="fas fa-edit ml-2"></i></a></td>
                         <td><a th:href="@{/order/delete/{id}(id=${order.id})}" class="btn btn-danger"><i
                                 class="fas fa-trash ml-2"></i></a></td>
                     </tr>
@@ -50,7 +47,6 @@
         </div>
     </div>
 </div>
-
 
 </body>
 </html>

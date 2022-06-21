@@ -2,6 +2,7 @@ package com.example.springbootapelsin.controller;
 
 import com.example.springbootapelsin.entity.Category;
 import com.example.springbootapelsin.entity.Customer;
+import com.example.springbootapelsin.entity.Product;
 import com.example.springbootapelsin.repository.CustomerRepository;
 import com.example.springbootapelsin.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,18 +41,18 @@ public class CustomerController {
     public String getEditPage(@PathVariable Integer id, Model model) {
         Customer customer = customerRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Id not found!" + id));
         model.addAttribute("customer", customer);
-        return "category/edit";
+        return "customer/edit";
     }
 
     @PostMapping("/edit/{id}")
-    public String editCustomer(@PathVariable Integer id, @ModelAttribute Customer customer,Model model){
-        customerService.edit(id,customer,model);
+    public String saveEditPage(@PathVariable Integer id, @ModelAttribute Customer customer, Model model) {
+        customerService.edit(id, model, customer);
         return "customer/list";
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteCustomer(@PathVariable Integer id,Model model){
-        customerService.delete(id,model);
+    public String deletePage(@PathVariable Integer id, Model model) {
+        customerService.delete(id, model);
         return "customer/list";
     }
 }

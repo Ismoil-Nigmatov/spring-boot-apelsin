@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+</head>
+<body>
+<!--//thymeleaf-->
+<div th:switch="${list}" class="container my-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 th:case="null">No Payment yet!</h2>
+            <div th:case="*">
+                <h2 class="my-5">Payments</h2>
+                <table class="table table-striped table-responsive-md">
+                    <thead>
+                    <tr>
+                        <th>T/r</th>
+                        <th>Time</th>
+                        <th>Amount</th>
+                        <th>Chek</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="payment,index : ${list}">
+                        <td th:text="${index.index+1}"></td>
+                        <td th:text="${payment.time}"></td>
+                        <td th:text="${payment.amount}"></td>
+                        <td th:text="${payment.invoice.id}"></td>
+                        <td><a th:href="@{/payment/edit/{id}(id=${payment.id})}" class="btn btn-warning"><i
+                                class="fas fa-edit ml-2"></i></a></td>
+                        <td><a th:href="@{/payment/delete/{id}(id=${payment.id})}" class="btn btn-danger"><i
+                                class="fas fa-trash ml-2"></i></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

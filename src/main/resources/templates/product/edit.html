@@ -10,21 +10,25 @@
 </head>
 <body>
 <div class="container">
-    <h1>Customer Management System</h1>
+    <h1>Product Management System</h1>
     <hr>
-    <h2>Update Customer</h2>
+    <h2>Update Product</h2>
 
-    <form th:action="@{/customer/edit/{id}(id=${customer.id})}" th:object="${customer}" method="post">
+    <form th:action="@{/product/edit/{id}(id=${product.id})}" th:object="${product}" method="post">
 
         <!-- Add hidden form field to handle update -->
-        <input type="hidden" th:value="${customer.id}" name="id"/>
+        <input type="hidden" th:value="${product.id}" name="id"/>
 
-        <input type="text" th:value="${customer.name}" name="name" class="form-control mb-4 col-4">
-        <input type="text" th:value="${customer.country}" name="country" class="form-control mb-4 col-4">
-        <input type="text" th:value="${customer.address}" name="address" class="form-control mb-4 col-4">
-        <input type="text" th:value="${customer.phone}" name="phone" class="form-control mb-4 col-4">
+        <input type="text" th:value="${product.name}" name="name" class="form-control mb-4 col-4">
+        <select name="catId">
+            <option th:each="category : ${categoryList}"
+                    th:text="${category.name}"
+                    th:value="${category.id}">
+        </select>
+        <input type="text" th:value="${product.description}" name="description" class="form-control mb-4 col-4">
+        <input type="text" th:value="${product.price}" name="price" class="form-control mb-4 col-4">
 
-        <button type="submit" class="btn btn-info col-2"> Update Customer</button>
+        <button type="submit" class="btn btn-info col-2"> Update Category</button>
     </form>
 
     <hr>

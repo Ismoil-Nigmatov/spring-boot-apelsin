@@ -1,10 +1,12 @@
 package com.example.springbootapelsin.service;
 
 import com.example.springbootapelsin.dto.ProductDTO;
+import com.example.springbootapelsin.entity.Category;
 import com.example.springbootapelsin.entity.Product;
 import com.example.springbootapelsin.repository.CategoryRepository;
 import com.example.springbootapelsin.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -51,5 +53,22 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
+    public void edit(Integer id, Model model, Product product) {
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        if (optionalProduct.isPresent()) {
+            Product editedProduct = optionalProduct.get();
+            editedProduct.setName(product.getName());
+            productRepository.save(editedProduct); // malumot qo'shish
+        }
+        model.addAttribute("list", productRepository.findAll(Sort.by("id")));
+    }
+
+    public void delete(Integer id, Model model) {
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        if (optionalProduct.isPresent()) {
+            productRepository.deleteById(id);
+        }
+        model.addAttribute("list",productRepository.findAll(Sort.by("id")));
+    }
 }
 
