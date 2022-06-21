@@ -23,7 +23,7 @@
                         <th>Date</th>
                         <th>Customer Name</th>
                         <th>Invoice number</th>
-                        <th>Invoice amount</th>
+<!--                        <th>Invoice amount</th>-->
                         <th>Product Name</th>
                         <th>Product soni</th>
                         <th>Delete</th>
@@ -35,7 +35,7 @@
                         <td th:text="${order.date}"></td>
                         <td th:text="${order.customer.name}"></td>
                         <td th:text="${order.invoice?.id}"></td>
-                        <td th:text="${order.invoice.amount}"></td>
+<!--                        <td th:text="${order.invoice.amount}"></td>-->
                         <td th:text="${order.detail[0].product.name}"></td>
                         <td th:text="${order.detail[0].quantity}"></td>
                         <td><a th:href="@{/order/delete/{id}(id=${order.id})}" class="btn btn-danger"><i
